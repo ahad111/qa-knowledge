@@ -1,0 +1,20 @@
+name: knowledge-check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  knowledge-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run knowledge check
+        run: python tools/knowledge_check.py origin/main
